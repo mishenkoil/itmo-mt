@@ -25,14 +25,15 @@ test('Pointers', () => {
     expect(() => Parser.parse('int * fib();')).not.toThrow();
     expect(() => Parser.parse('int **********fib();')).not.toThrow();
     expect(() => Parser.parse('int * *  *   *fib();')).not.toThrow();
+    
     expect(() => Parser.parse('int ******int****fib();')).toThrow();
 });
 
 test('Multiple arguments', () => {
     expect(() => Parser.parse('int fib(int a, long b, long long c);')).not.toThrow();
     expect(() => Parser.parse('int * fib(int ** a, long ** b, long long *** c);')).not.toThrow();
-
     expect(() => Parser.parse('int * fib();')).not.toThrow();
     expect(() => Parser.parse('int **********fib();')).not.toThrow();
+    
     expect(() => Parser.parse('int ******int****fib();')).toThrow();
 });
