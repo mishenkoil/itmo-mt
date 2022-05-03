@@ -40,8 +40,8 @@ arg -> eps | , D arg
 |----------------|--------------------------------------------------------|
 | **F**          | Стартовый нетерминал                                   |
 | **D**          | Описание ф-ии: тип + указатели + имя                   |
-| **P**          | Указатели функции                                      |
-| **args**       | Аргументы функции                                      |
+| **P**          | Указатели функции / eps                                |
+| **args**       | Аргументы функции / eps                                |
 | **arg**        | Аргумент функции: описание + следующий аргумент / eps  |
 
 | **Терминал**   | **Токен**     |
@@ -71,8 +71,8 @@ signed long long int **fib(int a, int b, int **c);
 ![graph](./graph.png)
 
 ## Тесты
-- [Different types](./tests/lab2.test.ts)
-- [Different names](./tests/lab2.test.ts)
-- [Pointers](./tests/lab2.test.ts)
-- [Multiple arguments](./tests/lab2.test.ts)
+- [Different types](./tests/lab2.test.ts#L3)
+- [Different names](./tests/lab2.test.ts#L13)
+- [Pointers](./tests/lab2.test.ts#L23)
+- [Multiple arguments](./tests/lab2.test.ts#L31)
 
