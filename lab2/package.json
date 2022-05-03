@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "ts-node": "^10.7.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.17.7",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.21",
+    "jest": "^27.5.1"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
