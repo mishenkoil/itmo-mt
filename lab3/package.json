@@ -1,0 +1,16 @@
+{
+  "name": "mt-lab-3",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "transform.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ilia Mishchenko",
+  "license": "ISC",
+  "dependencies": {
+    "antlr4": "^4.10.1",
+    "node": "^17.7.2"
+  }
+}
