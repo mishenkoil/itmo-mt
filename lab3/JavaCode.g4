@@ -38,9 +38,3 @@ NUM: [0-9]+;
 op: (operand SPACE sign SPACE op) | operand;
 sign: '+' | '-' | '/' | '*';
 TAB: '    '+;
-
-
-
-
-
-
