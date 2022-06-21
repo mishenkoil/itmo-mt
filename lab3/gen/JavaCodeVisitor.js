@@ -1,4 +1,4 @@
-// Generated from /Users/mishenkoil/WebstormProjects/test-antlr/JavaCode.g4 by ANTLR 4.10.1
+// Generated from /Users/mishenkoil/WebstormProjects/mt-lab-3/JavaCode.g4 by ANTLR 4.10.1
 // jshint ignore: start
 import antlr4 from 'antlr4';
 
@@ -134,6 +134,48 @@ export default class JavaCodeVisitor extends antlr4.tree.ParseTreeVisitor {
 
 	// Visit a parse tree produced by JavaCodeParser#operand.
 	visitOperand(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by JavaCodeParser#trycatch.
+	visitTrycatch(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by JavaCodeParser#tr.
+	visitTr(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by JavaCodeParser#ctch.
+	visitCtch(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by JavaCodeParser#ctcharg.
+	visitCtcharg(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by JavaCodeParser#ctchbody.
+	visitCtchbody(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by JavaCodeParser#errarg.
+	visitErrarg(ctx) {
+	  return this.visitChildren(ctx);
+	}
+
+
+	// Visit a parse tree produced by JavaCodeParser#errtype.
+	visitErrtype(ctx) {
 	  return this.visitChildren(ctx);
 	}
 

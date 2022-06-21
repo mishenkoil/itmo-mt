@@ -17,7 +17,7 @@ nextarg: ',' SPACE args ;
 
 body: '{\n' (TAB source)* '}';
 
-source: statement | returnfunc;
+source: statement | returnfunc | trycatch;
 returnfunc: RET (SPACE|) (VAR|NUM|) SEMICOLON;
 RET: 'return';
 VAR: [a-zA-Z_][a-zA-Z_0-9]*;
@@ -35,6 +35,18 @@ oper: operand | op;
 operand : VAR | NUM;
 NUM: [0-9]+;
 
+trycatch: tr SPACE ctch;
+tr: 'try' SPACE '{\n' (TAB source)* TAB '}';
+ctch: ctcharg SPACE ctchbody;
+ctcharg: 'catch' '(' errarg ')';
+ctchbody: '{\n' (TAB source)* TAB '}\n';
+errarg: errtype SPACE VAR;
+errtype: 'IOException' | 'NullPointerException' | 'ArithmeticException';
+
 op: (operand SPACE sign SPACE op) | operand;
 sign: '+' | '-' | '/' | '*';
 TAB: '    '+;
+
+
+
+

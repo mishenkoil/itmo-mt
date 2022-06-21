@@ -1,5 +1,13 @@
 public static final int best_func_ever(int a, int b) {
     int c, d = 35;
     d = a + b * c / d;
+    try {
+        c = 228 / 0;
+        c = 228 / 0;
+        c = 228 / 0;
+        c = 228 / 0;
+    } catch(ArithmeticException e) {
+        return 0;
+    }
     return d;
 }

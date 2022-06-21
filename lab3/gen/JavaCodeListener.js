@@ -1,4 +1,4 @@
-// Generated from /Users/mishenkoil/WebstormProjects/test-antlr/JavaCode.g4 by ANTLR 4.10.1
+// Generated from /Users/mishenkoil/WebstormProjects/mt-lab-3/JavaCode.g4 by ANTLR 4.10.1
 // jshint ignore: start
 import antlr4 from 'antlr4';
 
@@ -200,6 +200,69 @@ export default class JavaCodeListener extends antlr4.tree.ParseTreeListener {
 
 	// Exit a parse tree produced by JavaCodeParser#operand.
 	exitOperand(ctx) {
+	}
+
+
+	// Enter a parse tree produced by JavaCodeParser#trycatch.
+	enterTrycatch(ctx) {
+	}
+
+	// Exit a parse tree produced by JavaCodeParser#trycatch.
+	exitTrycatch(ctx) {
+	}
+
+
+	// Enter a parse tree produced by JavaCodeParser#tr.
+	enterTr(ctx) {
+	}
+
+	// Exit a parse tree produced by JavaCodeParser#tr.
+	exitTr(ctx) {
+	}
+
+
+	// Enter a parse tree produced by JavaCodeParser#ctch.
+	enterCtch(ctx) {
+	}
+
+	// Exit a parse tree produced by JavaCodeParser#ctch.
+	exitCtch(ctx) {
+	}
+
+
+	// Enter a parse tree produced by JavaCodeParser#ctcharg.
+	enterCtcharg(ctx) {
+	}
+
+	// Exit a parse tree produced by JavaCodeParser#ctcharg.
+	exitCtcharg(ctx) {
+	}
+
+
+	// Enter a parse tree produced by JavaCodeParser#ctchbody.
+	enterCtchbody(ctx) {
+	}
+
+	// Exit a parse tree produced by JavaCodeParser#ctchbody.
+	exitCtchbody(ctx) {
+	}
+
+
+	// Enter a parse tree produced by JavaCodeParser#errarg.
+	enterErrarg(ctx) {
+	}
+
+	// Exit a parse tree produced by JavaCodeParser#errarg.
+	exitErrarg(ctx) {
+	}
+
+
+	// Enter a parse tree produced by JavaCodeParser#errtype.
+	enterErrtype(ctx) {
+	}
+
+	// Exit a parse tree produced by JavaCodeParser#errtype.
+	exitErrtype(ctx) {
 	}
 
 

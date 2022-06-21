@@ -25,6 +25,10 @@ export default class ProcessingListener extends JavaCodeListener {
         this.parsedHtml.push(';<br>\n');
     }
 
+    nextLineWithBrackets() {
+        this.parsedHtml.push('<br>\n');
+    }
+
     exitModif(ctx) {
         this.paint(ctx.getText(), FUNC_PROPS_COLOR);
         this.space();
@@ -85,6 +89,7 @@ export default class ProcessingListener extends JavaCodeListener {
         if (ctx.NUM()) {
             this.parsedHtml.push(ctx.NUM().getText());
         }
+        this.nextLine();
     }
 
     enterVars(ctx) {
@@ -95,7 +100,7 @@ export default class ProcessingListener extends JavaCodeListener {
         this.parsedHtml.push(', ');
     }
 
-    exitSource(ctx) {
+    exitStatement(ctx) {
         this.nextLine();
     }
 
@@ -124,5 +129,55 @@ export default class ProcessingListener extends JavaCodeListener {
 
     enterSource(ctx) {
         this.parsedHtml.push(TAB.repeat(this.balance >= 0 ? this.balance : 0));
+    }
+
+    enterTr(ctx) {
+        this.paint('try', FUNC_PROPS_COLOR);
+        this.space();
+        this.parsedHtml.push('{');
+        this.nextLineWithBrackets();
+        this.balance++;
+    }
+
+    exitTr(ctx) {
+        this.balance--;
+        this.parsedHtml.push(TAB.repeat(this.balance >= 0 ? this.balance : 0));
+        this.parsedHtml.push('}');
+    }
+
+    enterCtcharg(ctx) {
+        this.space()
+        this.paint('catch', FUNC_PROPS_COLOR);
+        this.parsedHtml.push('(');
+    }
+
+    exitCtcharg(ctx) {
+        this.parsedHtml.push(')');
+    }
+
+    exitErrarg(ctx) {
+        this.parsedHtml.push(ctx.VAR().getText());
+    }
+
+    enterCtchbody(ctx) {
+        this.balance++;
+        this.space();
+        this.parsedHtml.push('{');
+        this.nextLineWithBrackets();
+    }
+
+    exitCtchbody(ctx) {
+        this.balance--;
+        this.parsedHtml.push(TAB.repeat(this.balance >= 0 ? this.balance : 0));
+        this.parsedHtml.push('}');
+    }
+
+    exitErrtype(ctx) {
+        this.paint(ctx.getText(), TYPE_COLOR);
+        this.space();
+    }
+
+    exitTrycatch(ctx) {
+        this.nextLineWithBrackets();
     }
 }
