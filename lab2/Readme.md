@@ -31,29 +31,34 @@ F -> D(args);
 
 D -> TYPE P NAME
 P -> eps | * P
-args -> eps | D arg
-arg -> eps | , D arg
+args -> eps | D arg | D = VALUE argval
+arg -> eps | , D arg | , D = VALUE argval
+argval -> eps | , D = VALUE argval
 ```
 
 ## Лексический анализатор
-| **Нетерминал** | **Описание**                                           |
-|----------------|--------------------------------------------------------|
-| **F**          | Стартовый нетерминал                                   |
-| **D**          | Описание ф-ии: тип + указатели + имя                   |
-| **P**          | Указатели функции / eps                                |
-| **args**       | Аргументы функции / eps                                |
-| **arg**        | Аргумент функции: описание + следующий аргумент / eps  |
+| **Нетерминал** | **Описание**                                                       |
+|----------------|--------------------------------------------------------------------|
+| **F**          | Стартовый нетерминал                                               |
+| **D**          | Описание ф-ии: тип + указатели + имя                               |
+| **P**          | Указатели функции                                                  |
+| **args**       | Аргументы функции                                                  |
+| **arg**        | Аргумент функции: описание + следующий аргумент / eps              |
+| **argval**     | Аргумент функции: описание + присвоение + следующий аргумент / eps |
 
-| **Терминал**   | **Токен**     |
-|----------------|---------------|
-| **(**          | OPEN_BRACKET  |
-| **)**          | CLOSE_BRACKET |
-| **;**          | SEMICOLON     |
-| **,**          | COMMA         |
-| *              | POINTER       |
-| **valid type** | TYPE          |
-| **valid name** | NAME          |
- | $              | END           |
+
+| **Терминал**    | **Токен**     |
+|-----------------|---------------|
+| **(**           | OPEN_BRACKET  |
+| **)**           | CLOSE_BRACKET |
+| **;**           | SEMICOLON     |
+| **,**           | COMMA         |
+| *               | POINTER       |
+| =               | EQ            |
+| **valid type**  | TYPE          |
+| **valid name**  | NAME          |
+| **valid value** | VALUE         |
+ | $               | END           |
 
 ## FIRST и FOLLOW
 | **Нетерминал** | **FIRST** | **FOLLOW** |
@@ -63,16 +68,17 @@ arg -> eps | , D arg
 | **P**          | * eps     | NAME       |
 | **args**       | type eps  | )          |
 | **arg**        | , eps     | )          |
+| **argval**     | , eps     | )          |
 
 ## Дерево разбора
 ```
-signed long long int **fib(int a, int b, int **c);
+int **fib(int a, int b = 22);
 ```
 ![graph](./graph.png)
 
 ## Тесты
-- [Different types](./tests/lab2.test.ts#L3)
-- [Different names](./tests/lab2.test.ts#L13)
-- [Pointers](./tests/lab2.test.ts#L23)
-- [Multiple arguments](./tests/lab2.test.ts#L31)
+- [Different types](./tests/lab2.test.ts)
+- [Different names](./tests/lab2.test.ts)
+- [Pointers](./tests/lab2.test.ts)
+- [Multiple arguments](./tests/lab2.test.ts)
 

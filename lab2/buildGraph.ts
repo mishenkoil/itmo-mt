@@ -3,7 +3,7 @@ import {Parser} from './src/Parser'
 import {Tree} from "./src/Tree";
 import {Token} from "./src/Token";
 
-let test = Parser.parse('signed long long int **fib(int a, int b, int **c);')
+let test = Parser.parse('int **fib(int a, int b = 22);')
 
 let dotGraph = '';
 let dotVisualProperties = '';

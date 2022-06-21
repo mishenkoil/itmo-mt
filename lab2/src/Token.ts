@@ -4,7 +4,9 @@ export enum Token {
     SEMICOLON = ';',
     COMMA = ',',
     POINTER = '*',
+    EQ = '=',
     TYPE = 'TYPE',
     NAME = 'NAME',
+    VALUE = 'VALUE',
     END = '$',
 }

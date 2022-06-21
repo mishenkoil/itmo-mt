@@ -85,6 +85,10 @@ export class LexicalAnalyzer {
         return /[a-zA-Z_0-9]/.test(c);
     }
 
+    private static isNum(c: string) {
+        return /[0-9]/.test(c);
+    }
+
     private next() {
         return this.curPos < this.input.length;
     }
@@ -131,6 +135,10 @@ export class LexicalAnalyzer {
                 this.curToken = Token.POINTER;
                 this.nextChar();
                 break;
+            case '=':
+                this.curToken = Token.EQ;
+                this.nextChar();
+                break;
             default:
                 // очень запутанно паршу токены TYPE и NAME,
                 // идея следующая - пытаюсь парсить TYPE, если не получается, пробую спарсить как NAME,
@@ -144,6 +152,17 @@ export class LexicalAnalyzer {
                     if (this.next() && LexicalAnalyzer.isWordChar(this.curChar, true)) {
                         tmpWord += this.curChar;
                         this.nextChar();
+                    } else if (this.next() && LexicalAnalyzer.isNum(this.curChar)) {
+                        while (this.next() && LexicalAnalyzer.isNum(this.curChar)) {
+                            tmpWord += this.curChar;
+                            this.nextChar();
+                        }
+                        if (!this.next() || !LexicalAnalyzer.isWordChar(this.curChar)) {
+                            this.curToken = Token.VALUE;
+                            break;
+                        } else {
+                            throw SyntaxError(`Illegal character "${this.curChar}" at ${this.curPos} position`);
+                        }
                     } else if (this.next() && !'*(),;'.includes(this.curChar)) {
                         throw SyntaxError(`Illegal character "${this.curChar}" at ${this.curPos} position`);
                     }

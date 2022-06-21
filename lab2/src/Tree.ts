@@ -5,7 +5,7 @@ export class Tree {
 
     constructor(node: string, children: Tree[] | null = null) {
         this.node = node;
-        this.id = btoa(Math.random().toString()).slice(5, 10);
+        this.id = (Math.random() + 1).toString(36).substring(7);
         this.children = children;
     }
 }
