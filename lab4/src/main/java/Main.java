@@ -2,8 +2,6 @@ package main.java;
 
 import calculator.CalculatorLexer;
 import calculator.CalculatorParser;
-//import second.SecondLexer;
-//import second.SecondParser;
 import main.*;
 import main.generator.Grammar;
 import org.antlr.v4.runtime.CharStreams;
@@ -16,7 +14,6 @@ public class Main {
     public static void main(String[] args) {
         try {
             MainGrammarLexer lexer = new MainGrammarLexer(CharStreams.fromFileName("calcgrammar"));
-//            MainGrammarLexer lexer = new MainGrammarLexer(CharStreams.fromFileName("secondgrammar"));
             TokenStream tokenStream = new CommonTokenStream(lexer);
             MainGrammarParser parser = new MainGrammarParser(tokenStream);
             Grammar grammar = parser.start().gram;
@@ -25,13 +22,6 @@ public class Main {
             new LexerGenerator(grammar);
             new ParserGenerator(grammar);
             Scanner in = new Scanner(System.in);
-//            while (true) {
-//                String str = in.nextLine();
-//                System.out.println(str);
-//                SecondLexer secondLexer = new SecondLexer(str);
-//                SecondParser secondParser = new SecondParser(secondLexer);
-//                secondParser.showTree(1);
-//            }
             while (true) {
                 String str = in.nextLine();
                 System.out.println(str);

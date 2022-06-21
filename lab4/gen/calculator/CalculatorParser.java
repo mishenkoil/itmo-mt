@@ -76,9 +76,30 @@ public class CalculatorParser {
 		public int value;
 	}
 
+	public class Tree_R extends Tree {
+		Tree_R() {
+			super("R");
+		}
+		public int value;
+	}
+
+	public class Tree_PowOp extends Tree {
+		Tree_PowOp() {
+			super("PowOp");
+		}
+		public int value;
+	}
+
 	public class Tree_T extends Tree {
 		Tree_T() {
 			super("T");
+		}
+		public int value;
+	}
+
+	public class Tree_D extends Tree {
+		Tree_D() {
+			super("D");
 		}
 		public int value;
 	}
@@ -176,6 +197,59 @@ public class CalculatorParser {
 		}
 	}
 
+	private Tree_R _R(int a) throws Exception {
+		Tree_R res = new Tree_R();
+		switch (lex.getCurrentToken()) {
+			case _END :
+			case DIV :
+			case MUL :
+			case RBRACKET :
+			case PLUS :
+			case MINUS :
+			{
+				res.value = a;
+				return res;
+			}
+			case POW :
+			{
+				consume(CalculatorToken.POW);
+				res.addChild(new Tree("POW"));
+				
+				lex.getNextToken();
+				Tree_F n0 = _F();
+				res.addChild(n0);
+				int u = n0.value;
+				Tree_R n1 = _R(u);
+				res.addChild(n1);
+				int acc = n1.value;
+				Tree_PowOp n2 = _PowOp(a, acc);
+				res.addChild(n2);
+				res.value = n2.value;
+				return res;
+			}
+			default : 
+				throw new Exception("Unexpected token.");
+		}
+	}
+
+	private Tree_PowOp _PowOp(int a, int b) throws Exception {
+		Tree_PowOp res = new Tree_PowOp();
+		switch (lex.getCurrentToken()) {
+			case _END :
+			case DIV :
+			case MUL :
+			case RBRACKET :
+			case PLUS :
+			case MINUS :
+			{
+				res.value = (int) Math.pow(a, b);
+				return res;
+			}
+			default : 
+				throw new Exception("Unexpected token.");
+		}
+	}
+
 	private Tree_T _T() throws Exception {
 		Tree_T res = new Tree_T();
 		switch (lex.getCurrentToken()) {
@@ -196,6 +270,26 @@ public class CalculatorParser {
 		}
 	}
 
+	private Tree_D _D() throws Exception {
+		Tree_D res = new Tree_D();
+		switch (lex.getCurrentToken()) {
+			case NUMBER :
+			case LBRACKET :
+			case MINUS :
+			{
+				Tree_F n0 = _F();
+				res.addChild(n0);
+				int u = n0.value;
+				Tree_R n1 = _R(u);
+				res.addChild(n1);
+				res.value = n1.value;
+				return res;
+			}
+			default : 
+				throw new Exception("Unexpected token.");
+		}
+	}
+
 	private Tree_E _E() throws Exception {
 		Tree_E res = new Tree_E();
 		switch (lex.getCurrentToken()) {
@@ -203,7 +297,7 @@ public class CalculatorParser {
 			case LBRACKET :
 			case MINUS :
 			{
-				Tree_F n0 = _F();
+				Tree_D n0 = _D();
 				res.addChild(n0);
 				int m = n0.value;
 				Tree_H n1 = _H(m);
@@ -360,7 +454,7 @@ public class CalculatorParser {
 				res.addChild(new Tree("MUL"));
 				
 				lex.getNextToken();
-				Tree_F n0 = _F();
+				Tree_D n0 = _D();
 				res.addChild(n0);
 				int u = n0.value;
 				Tree_MulOp n1 = _MulOp(a, u);
@@ -377,7 +471,7 @@ public class CalculatorParser {
 				res.addChild(new Tree("DIV"));
 				
 				lex.getNextToken();
-				Tree_F n0 = _F();
+				Tree_D n0 = _D();
 				res.addChild(n0);
 				int u = n0.value;
 				Tree_DivOp n1 = _DivOp(a, u);

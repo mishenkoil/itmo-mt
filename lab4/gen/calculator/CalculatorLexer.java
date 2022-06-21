@@ -19,6 +19,7 @@ public class CalculatorLexer {
 		tokenPatterns.add(new TokensHolder(CalculatorToken.MINUS,"-"));
 		tokenPatterns.add(new TokensHolder(CalculatorToken.MUL,"\\*"));
 		tokenPatterns.add(new TokensHolder(CalculatorToken.DIV,"\\/"));
+		tokenPatterns.add(new TokensHolder(CalculatorToken.POW,"\\^"));
 		tokenPatterns.add(new TokensHolder(CalculatorToken.LBRACKET,"\\("));
 		tokenPatterns.add(new TokensHolder(CalculatorToken.RBRACKET,"\\)"));
 		tokenPatterns.add(new TokensHolder(CalculatorToken.NUMBER,"[1-9]+[0-9]*|0"));

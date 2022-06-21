@@ -5,6 +5,7 @@ public enum CalculatorToken {
 	SPACE,
 	NUMBER,
 	MUL,
+	POW,
 	LBRACKET,
 	RBRACKET,
 	PLUS,
