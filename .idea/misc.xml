@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="HaskellBuildOptions">
+    <ghcPath>C:\Program Files (x86)\Haskell Platform\2014.2.0.0\bin\ghc.exe</ghcPath>
+    <cabalPath>C:\Program Files (x86)\Haskell Platform\2014.2.0.0\lib\extralibs\bin\cabal.exe</cabalPath>
+    <stackPath>C:\Users\Milkman PC\AppData\Roaming\local\bin\stack.exe</stackPath>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

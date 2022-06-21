@@ -1,0 +1,42 @@
+grammar Calculator;
+
+@Imports {
+import java.lang.StringBuilder;
+}
+
+@Tokens {
+PLUS: "\\+" ;
+MINUS:  "-" ;
+MUL: "\\*";
+DIV: "\\/";
+LBRACKET: "\\(";
+RBRACKET: "\\)";
+NUMBER: "[1-9]+[0-9]*|0";
+SPACE: "[ \n\r]+" -> skip;
+}
+
+@FNode = E;
+
+@States {
+E returns [int value]
+    : F `int m = n0.value;` H[m] `int u = n1.value;` G[u] `res.value = n2.value;`;
+G [int a] returns [int value]
+    : EPS `res.value = a;`
+    | PLUS T `int u = n0.value;` PlusOp[a, u] `int acc = n1.value;` G[acc] `res.value = n2.value;`
+    | MINUS T `int u = n0.value;` MinusOp[a, u] `int acc = n1.value;` G[acc] `res.value = n2.value;`;
+T returns [int value]
+    : F `int u = n0.value;` H[u] `res.value = n1.value;`;
+H [int a] returns [int value]
+    : EPS `res.value = a;`
+    | MUL F `int u = n0.value;` MulOp[a, u] `int acc = n1.value;` H[acc] `res.value = n2.value;`
+    | DIV F `int u = n0.value;` DivOp[a, u] `int acc = n1.value;` H[acc] `res.value = n2.value;`;
+F returns [int value]
+    : NUMBER `res.value = Integer.parseInt(lex.getCurrentTokenString());`
+    | MINUS F `res.value = -(n0.value);`
+    | LBRACKET E `res.value = n0.value;` RBRACKET;
+
+PlusOp[int a, int b] returns [int value] : EPS `res.value = a + b;`;
+MinusOp[int a, int b] returns [int value] : EPS `res.value = a - b;`;
+MulOp[int a, int b] returns [int value] : EPS `res.value = a * b;`;
+DivOp[int a, int b] returns [int value] : EPS `res.value = a / b;`;
+}

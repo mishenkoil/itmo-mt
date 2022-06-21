@@ -1,0 +1,38 @@
+grammar Second;
+
+@Imports {
+import java.lang.StringBuilder;
+}
+
+@Tokens {
+LPAREN: "\\(";
+RPAREN: "\\)";
+POINTER: "\\*";
+COMMA: ",";
+SEMICOLON: ";";
+INT: "int";
+CHAR: "char";
+NAME: "[a-zA-Z_]+[a-zA-Z_0-9]*";
+SPACE: "[ \n\r]+" -> skip;
+}
+
+@FNode = F;
+
+@States {
+F
+    : D LPAREN Args RPAREN SEMICOLON;
+D
+    : Type P NAME;
+P
+    : EPS
+    | POINTER P;
+Args
+    : EPS
+    | D Arg;
+Arg
+    : EPS
+    | COMMA D Arg;
+Type
+    : INT
+    | CHAR;
+}
